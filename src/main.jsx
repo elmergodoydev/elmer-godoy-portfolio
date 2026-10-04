@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import CssBaseline from '@mui/material/CssBaseline'
+import { Analytics } from '@vercel/analytics/react'
 import { ThemeProvider } from '@mui/material/styles'
 import { LazyMotion, domAnimation } from 'motion/react'
 import App from './App'
@@ -13,6 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <CssBaseline />
       <LazyMotion features={domAnimation}>
         <App />
+        <Analytics />
       </LazyMotion>
     </ThemeProvider>
   </React.StrictMode>,

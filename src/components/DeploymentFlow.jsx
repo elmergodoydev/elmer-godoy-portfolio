@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { Box } from '@mui/material'
-import { motion } from 'motion/react'
+import Box from '@mui/material/Box'
+import * as m from 'motion/react-m'
 import { flowSteps } from '../data/content'
 import DeploymentIcon from './DeploymentIcon'
 
@@ -10,8 +10,10 @@ export default function DeploymentFlow({ lang, caption }) {
 
   useEffect(() => {
     let nextTimer
+
     const holdTimer = window.setTimeout(() => {
       setMoving(active)
+
       nextTimer = window.setTimeout(() => {
         setActive((value) => (value + 1) % flowSteps.length)
         setMoving(-1)
@@ -32,10 +34,10 @@ export default function DeploymentFlow({ lang, caption }) {
           const isReached = index < active
           const title = lang === 'es' ? step.label : step.labelEn
           const sub = lang === 'es' ? step.sub : step.subEn
-        
+
           return (
             <div key={step.mark} className="flow-sequence-unit">
-              <motion.div
+              <m.div
                 className={`flow-card glass ${isActive ? 'flow-card-active' : ''} ${isReached ? 'flow-card-reached' : ''}`}
                 initial={{ opacity: 0, y: 16 }}
                 animate={{
@@ -50,18 +52,26 @@ export default function DeploymentFlow({ lang, caption }) {
                 <div className="flow-card-top">
                   <span className="flow-mark">{step.mark}</span>
                 </div>
+
                 <div className="flow-card-main">
-                  <span className="flow-brand"><DeploymentIcon index={index} /></span>
+                  <span className="flow-brand">
+                    <DeploymentIcon index={index} />
+                  </span>
+
                   <span className="flow-text">
                     <strong>{title}</strong>
                     <small>{sub}</small>
                   </span>
                 </div>
+
                 <span className="flow-beacon" />
-              </motion.div>
+              </m.div>
 
               {index < flowSteps.length - 1 && (
-                <div className={`flow-connector ${index < active ? 'connector-complete' : ''} ${index === moving ? 'connector-active' : ''}`} aria-hidden="true">
+                <div
+                  className={`flow-connector ${index < active ? 'connector-complete' : ''} ${index === moving ? 'connector-active' : ''}`}
+                  aria-hidden="true"
+                >
                   <span className="flow-connector-track" />
                   <span className="flow-connector-beam" />
                   <i />
@@ -71,7 +81,11 @@ export default function DeploymentFlow({ lang, caption }) {
           )
         })}
       </Box>
-      <div className="flow-caption"><span className="pulse-dot" />{caption}</div>
+
+      <div className="flow-caption">
+        <span className="pulse-dot" />
+        {caption}
+      </div>
     </Box>
   )
 }

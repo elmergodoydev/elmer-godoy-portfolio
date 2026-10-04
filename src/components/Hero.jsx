@@ -1,10 +1,14 @@
-import { Box, Button, Chip, Container, Stack, Typography } from '@mui/material'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Chip from '@mui/material/Chip'
+import Container from '@mui/material/Container'
+import Stack from '@mui/material/Stack'
+import Typography from '@mui/material/Typography'
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded'
-import { motion } from 'motion/react'
+import * as m from 'motion/react-m'
 import DeploymentFlow from './DeploymentFlow'
 import { profile } from '../data/content'
 import profileImage from '../assets/images/elmer-profile.png'
-
 
 export default function Hero({ lang, t }) {
   const scroll = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
@@ -17,24 +21,50 @@ export default function Hero({ lang, t }) {
       <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 3 }}>
         <Box className="hero-layout">
           <Box className="hero-copy">
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: .65, ease: 'easeOut' }}
             >
-              <Stack direction="row" spacing={1.1} alignItems="center" className="hero-eyebrow">
+              <Stack
+                direction="row"
+                spacing={1.1}
+                alignItems="center"
+                className="hero-eyebrow"
+              >
                 <span className="status-dot" />
-                <Typography color="primary.main">{t.heroEyebrow}</Typography>
+                <Typography color="primary.main">
+                  {t.heroEyebrow}
+                </Typography>
               </Stack>
-            </motion.div>
+            </m.div>
 
-            <motion.div
+            <m.div
               initial="hidden"
               animate="show"
-              variants={{ hidden: {}, show: { transition: { staggerChildren: .08 } } }}
+              variants={{
+                hidden: {},
+                show: {
+                  transition: {
+                    staggerChildren: .08
+                  }
+                }
+              }}
             >
-              <Typography component="h1" className="hero-title-v3" aria-label="Elmer Godoy Angeles" sx={{ fontSize: { xs: '3rem', sm: '3.8rem', md: '4.8rem', lg: '5.8rem' } }}>
-                <motion.span
+              <Typography
+                component="h1"
+                className="hero-title-v3"
+                aria-label="Elmer Godoy Angeles"
+                sx={{
+                  fontSize: {
+                    xs: '3rem',
+                    sm: '3.8rem',
+                    md: '4.8rem',
+                    lg: '5.8rem'
+                  }
+                }}
+              >
+                <m.span
                   className="hero-name-line"
                   variants={{
                     hidden: {
@@ -53,9 +83,9 @@ export default function Hero({ lang, t }) {
                   }}
                 >
                   ELMER
-                </motion.span>
+                </m.span>
 
-                <motion.span
+                <m.span
                   className="hero-name-line"
                   variants={{
                     hidden: {
@@ -74,56 +104,126 @@ export default function Hero({ lang, t }) {
                   }}
                 >
                   GODOY ANGELES<span className="blue-dot">.</span>
-                </motion.span>
+                </m.span>
               </Typography>
-            </motion.div>
+            </m.div>
 
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: .65, delay: .32 }}
+              transition={{
+                duration: .65,
+                delay: .32
+              }}
             >
-              <Typography className="hero-role-v3" sx={{ fontSize: { xs: '1.05rem', sm: '1.3rem', md: '1.5rem', lg: '1.7rem' } }}>{profile.role}</Typography>
-              <Typography className="hero-lead-v3">{t.heroLead}</Typography>
+              <Typography
+                className="hero-role-v3"
+                sx={{
+                  fontSize: {
+                    xs: '1.05rem',
+                    sm: '1.3rem',
+                    md: '1.5rem',
+                    lg: '1.7rem'
+                  }
+                }}
+              >
+                {profile.role}
+              </Typography>
 
+              <Typography className="hero-lead-v3">
+                {t.heroLead}
+              </Typography>
 
-              <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.4} sx={{ mt: 3.2 }}>
-                <Button data-cursor size="large" variant="contained" endIcon={<ArrowForwardRoundedIcon />} onClick={() => scroll('proyectos')}>
+              <Stack
+                direction={{ xs: 'column', sm: 'row' }}
+                spacing={1.4}
+                sx={{ mt: 3.2 }}
+              >
+                <Button
+                  data-cursor
+                  size="large"
+                  variant="contained"
+                  endIcon={<ArrowForwardRoundedIcon />}
+                  onClick={() => scroll('proyectos')}
+                >
                   {t.heroCta}
                 </Button>
-                <Button data-cursor size="large" variant="outlined" onClick={() => scroll('contacto')}>
+
+                <Button
+                  data-cursor
+                  size="large"
+                  variant="outlined"
+                  onClick={() => scroll('contacto')}
+                >
                   {t.heroContact}
                 </Button>
               </Stack>
 
-              <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap sx={{ mt: 2.4 }}>
+              <Stack
+                direction="row"
+                spacing={1}
+                flexWrap="wrap"
+                useFlexGap
+                sx={{ mt: 2.4 }}
+              >
                 {['Full Stack', 'Automatización', 'Integración'].map((item) => (
-                  <Chip data-cursor key={item} label={item} variant="outlined" />
+                  <Chip
+                    data-cursor
+                    key={item}
+                    label={item}
+                    variant="outlined"
+                  />
                 ))}
               </Stack>
-            </motion.div>
+            </m.div>
           </Box>
 
           <Box className="hero-visual">
-            <motion.div
+            <m.div
               className="profile-frame glass"
-              initial={{ opacity: 0, x: 34, scale: .96 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ duration: .9, delay: .13 }}
+              initial={{
+                opacity: 0,
+                x: 34,
+                scale: .96
+              }}
+              animate={{
+                opacity: 1,
+                x: 0,
+                scale: 1
+              }}
+              transition={{
+                duration: .9,
+                delay: .13
+              }}
             >
-              <img src={profileImage} alt="Elmer Godoy Angeles" />
-              <div className="profile-shade" />
-              <div className="profile-meta">
-                <span>{lang === 'es' ? 'Construcción · Integración · Despliegue' : 'Build · Integrate · Deploy'}</span>
-              </div>
-            </motion.div>
+              <img
+                src={profileImage}
+                alt="Elmer Godoy Angeles"
+              />
 
-            <DeploymentFlow lang={lang} caption={t.heroFlow} />
+              <div className="profile-shade" />
+
+              <div className="profile-meta">
+                <span>
+                  {lang === 'es'
+                    ? 'Construcción · Integración · Despliegue'
+                    : 'Build · Integrate · Deploy'}
+                </span>
+              </div>
+            </m.div>
+
+            <DeploymentFlow
+              lang={lang}
+              caption={t.heroFlow}
+            />
           </Box>
         </Box>
       </Container>
 
-      <div className="hero-scroll-note"><span>SCROLL</span><i /></div>
+      <div className="hero-scroll-note">
+        <span>SCROLL</span>
+        <i />
+      </div>
     </Box>
   )
 }
